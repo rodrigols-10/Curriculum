@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;600&display=swap');
+
+:root{
+    --name-size: 1.5rem;
+    --h2-size: 1rem;
+    --a-menu-size: 1rem;
+}
+
+@keyframes name-animation {
+    from {transform: rotateX(80deg);}
+    to {transform: rotateX(0deg);}
+}
+
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(20, 22, 37);
+    background-image: url(../assets/images/bg696644.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center 30px;
+    background-size: cover;
+
+    color: aliceblue;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    border-width: 3px;
+    border-style: none none outset outset;
+    border-color: aliceblue;
+    border-end-start-radius: 10px;
+    background-color: transparent;
+    
+}
+
+nav div{
+    width: 40px;
+    height: 24px;
+}
+
+nav div svg {
+    border-radius: 3px;
+    width: 40px;
+    height: 24px;
+}
+
+p{
+    margin: 1rem 0;
+}
+
+h2{
+    font-size: var(--h2-size);
+    margin: 1rem 0;
+}
+
+header {
+    width: 100%;
+    background-image: linear-gradient(180deg,rgb(20, 22, 37),rgb(20, 22, 37),rgba(20, 22, 37,0.4), transparent);
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.7rem 0 4rem;
+    
+}
+
+section{
+    width: 80%;
+    margin: 0 auto;
+}
+
+aside{
+    position:fixed;
+    right:0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+}
+/* 
+aside ul {
+
+} */
+
+aside ul li {
+    position: relative;
+    left: 0px;
+    list-style-type: none;
+    height: 50px;
+    width: 200px;
+    margin-left: 40px;
+    margin-bottom: 3px;
+
+    background-repeat: no-repeat;
+    background-position: 240px center;
+    background-size: 17px;
+    
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+aside ul li:hover,.menu-active  {
+    font-size: 1.4rem;
+    height: 60px;
+    width: 240px;
+    margin:0;
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    background-image: url(../assets/images/pointer1.webp);
+    background-position: right center;
+}
+
+aside ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: aliceblue;
+    height: 100%;
+    width: 200px;
+    background-image: linear-gradient(90deg, rgba(20, 22, 37,0.8),rgba(20, 22, 37,0.4), transparent);
+    border-width: 1px;
+    border-style: solid solid solid solid;
+    border-color: white;
+    margin:0;
+}
+
+#curriculum{
+    font-weight: 100;
+    letter-spacing: 1em;
+    margin-left: 1em;
+
+    animation-name: name-animation;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+#name{
+    display:flex;
+    flex-direction: row;
+}
+
+
+
+
+.name{
+    color: aliceblue;
+    border: 0.5px solid white;
+    width: calc(var(--name-size) + 8px);
+    height: calc(var(--name-size) + 8px);
+    /* padding: 0px 5px; */
+    
+    font-size: var(--name-size);
+    font-weight: 100;
+    text-align: center;
+
+    transform: rotateX(90deg);
+    transform-style: preserve-3d;
+    animation-name: name-animation;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+hr {
+    width: 70%;
+    height:1px;
+    /* border: 1px solid  aliceblue; */
+    margin: 3px 0;
+    background-color: aliceblue;
+}
