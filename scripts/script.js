@@ -1,26 +1,47 @@
+// const target = ['profileTitle','educationTitle','experienceTitle'];
+
+const debounce = function(func, wait, immediate) {
+    let timeout;
+    return function(...args) {
+      const context = this;
+      const later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+};
+
 const currentLanguage = function () {
     if(sessionStorage.getItem('language') !== undefined){
         let language = new Language('storage');
         language.changePageLanguage();
+        loadAllTitles();
+        animeScroll()
     }
 }
 
 const portugueseLanguage = function(){
     let language = new Language("pt-br");
     language.changePageLanguage();
+    loadAllTitles();
+    animeScroll()
 }
 
 const englishLanguage = function(){
     let language = new Language("en");
     language.changePageLanguage();
+    loadAllTitles();
+    animeScroll()
 }
 
 const nameAnimation = function(name){
-    console.log("Animation working...");
-    
     let i = 0;
     name.split('').forEach(element => {
-        const letter = document.createElement("h1");
+        const letter = document.createElement("h2");
         letter.innerHTML = element;        
         letter.classList.add("name");
         if(i > 0) letter.style.borderStyle = 'solid solid solid none';
@@ -37,3 +58,130 @@ const nameAnimation = function(name){
     document.getElementsByClassName("name-hr")[0].style.width = hrWidth;
     document.getElementsByClassName("name-hr")[1].style.width = hrWidth;
 }
+
+const loadAllTitles = function (){
+    titleStructure('profileTitle');
+    titleStructure('educationTitle');
+    titleStructure('experienceTitle');
+    titleStructure('skillsTitle');
+    titleStructure('contactsTitle');
+}
+
+const menuSelection = function(value){
+    const menu = document.querySelectorAll("#menu ul li").length;
+    for (let i = 1; i <= menu; i++) {
+        document.getElementById('menu-item-'+i).classList.remove('menu-active');
+    }
+    document.getElementById('menu-item-'+value).classList.add('menu-active');
+}
+
+const menuAction = function(value){
+
+    // window.pageYOffset = document.getElementById(target[value-1]).offsetTop;
+    // menuSelection(value);
+}
+
+const titleStructure = function(tagId){
+    //TITLE
+    let i = 0;
+    const name = document.querySelector("#"+tagId+" > h1").textContent;
+    document.getElementById(tagId).innerHTML = "<h1 class='title-content'>"+name+"</h1>";
+    document.querySelector("#"+tagId+" .title-content").style.display = "none";
+    name.split('').forEach(element => {
+        const letter = document.createElement("h1");
+        letter.textContent = element;
+        letter.classList.add("section-title-letters");
+        let size = (100/name.length)+"%";
+        letter.style.height = size;
+        letter.style.animationDelay = 0.1+0.1*i+"s";
+        letter.style.translate = "-1px -"+ i + "px";
+        document.getElementById(tagId).appendChild(letter);
+        i++;
+    });
+
+    let boxWidth = document.querySelectorAll("#"+tagId+" .section-title-letters")[0].offsetHeight;
+    for (let j = 0; j < name.length; j++) {
+        document.querySelectorAll("#"+tagId+" .section-title-letters")[j].style.width = boxWidth+"px";
+        document.querySelectorAll("#"+tagId+" .section-title-letters")[j].style.fontSize = boxWidth * 0.8 +"px";
+        
+    }
+    //NUMBER
+    i = 0;
+    let sectionNumber = document.querySelector("#"+tagId).parentElement.querySelector(".section-number");
+    let sectionNumberH1 = document.querySelector("#"+tagId).parentElement.querySelector(".section-number h1");
+    let sectionNumberValue = sectionNumberH1.textContent;
+    sectionNumber.innerHTML = "<h1 class='title-content' style='display:none'>"+sectionNumberValue+"</h1>";
+    // sectionNumberH1.style.display = "none";
+
+    let spaces = name.length - sectionNumberValue.length;
+    for (let index = 0; index < spaces; index++) sectionNumberValue += " ";
+    sectionNumberValue.split('').forEach(element => {
+        const snumber = document.createElement("h1");
+        snumber.textContent = element;
+        snumber.classList.add("section-title-letters");
+        let size = (100/name.length)+"%";
+        snumber.style.height = size;
+        snumber.style.backgroundImage = "linear-gradient(to right, transparent, var(--text-color))";
+        // letter.style.animationDelay = 0.1+0.1*i+"s";
+        snumber.style.translate = "0px -"+ i + "px";
+        snumber.style.width = boxWidth+"px";
+        snumber.style.fontSize = boxWidth * 0.8 +"px";
+        sectionNumber.appendChild(snumber);
+        i++;
+    });
+}
+
+function animeScroll() {
+    const titles = document.querySelectorAll(".section-title");
+    let target = [];
+    let i = 0;
+    titles.forEach(function(e){target[i] = e.getAttribute("id"); i++;})
+    const windowTop = window.pageYOffset + (window.innerHeight * 0.75);
+    for (let i = 0; i < target.length; i++) {
+        if((windowTop) > document.getElementById(target[i]).offsetTop) {
+            menuSelection(i+1);
+            for (let j = 0; j < document.querySelectorAll("#"+target[i]+" .section-title-letters").length; j++) {
+                document.querySelectorAll("#"+target[i]+" .section-title-letters")[j].classList.add('section-title-animated');
+            }
+        } else {
+            for (let j = 0; j < document.querySelectorAll("#"+target[i]+" .section-title-letters").length; j++) {
+                document.querySelectorAll("#"+target[i]+" .section-title-letters")[j].classList.remove('section-title-animated');
+            }
+        }
+    }
+}
+
+const smoothScrollTo = function (endX, endY, duration) {
+    const startX = window.scrollX || window.pageXOffset;
+    const startY = window.scrollY || window.pageYOffset;
+    const distanceX = endX - startX;
+    const distanceY = endY - startY;
+    const startTime = new Date().getTime();
+  
+    duration = typeof duration !== 'undefined' ? duration : 400;
+  
+    // Easing function
+    const easeInOutQuart = (time, from, distance, duration) => {
+      if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from;
+      return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
+    };
+  
+    const timer = setInterval(() => {
+      const time = new Date().getTime() - startTime;
+      const newX = easeInOutQuart(time, startX, distanceX, duration);
+      const newY = easeInOutQuart(time, startY, distanceY, duration);
+      if (time >= duration) {
+        clearInterval(timer);
+      }
+      window.scroll(newX, newY);
+    }, 1000 / 60); // 60 fps
+  };
+
+window.addEventListener('scroll', debounce(function() {
+    animeScroll();
+  }, 200));
+
+
+  smoothScrollTo(0,600);
+  loadAllTitles();
+  animeScroll();
