@@ -8,13 +8,13 @@
 
     <link rel="stylesheet" href="styles/style.css">
 </head>
-<body onload="currentLanguage();nameAnimation('RODRIGO DE LIMA');">
+<body onload="currentLanguage();nameAnimation('RODRIGO DE LIMA');animeScroll();">
     <nav>
-        <div onclick="portugueseLanguage()" title="Português"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 30"><g id="Camada_2" data-name="Camada 2"><g id="Camada_1-2" data-name="Camada 1"><rect width="50" height="30" style="fill:#3aaa35"/><polygon points="25 1.2 2 15 25 28.8 48 15 25 1.2" style="fill:#ffed00"/><circle cx="25" cy="15" r="9.32" style="fill:#1d71b8"/></g></g></svg></div>
-        <div onclick="englishLanguage();" title="English"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 30"><g id="Camada_2" data-name="Camada 2"><g id="Camada_1-2" data-name="Camada 1"><rect width="50" height="30" style="fill:#fff"/><rect width="50" height="3.33" style="fill:#e30613"/><rect y="6.67" width="50" height="3.33" style="fill:#e30613"/><rect y="13.34" width="50" height="3.33" style="fill:#e30613"/><rect y="20" width="50" height="3.33" style="fill:#e30613"/><rect y="26.67" width="50" height="3.33" style="fill:#e30613"/><rect width="22.76" height="16.67" style="fill:#2d2e83"/></g></g></svg></div>
+        <div onclick="portugueseLanguage()" title="Português"><img src="assets/images/ptbr1.webp" alt="Alterar idioma para Português"></div>
+        <div onclick="englishLanguage();" title="English"><img src="assets/images/en1.webp" alt="Change language to English"></div>
     </nav>
-    <header>
-        <h2 id='curriculum'>[CURRICULUM]</h2>
+    <header id="top">
+        <h3 id='curriculum'>[CURRICULUM]</h3>
         <hr class="name-hr">
         <div id="name"></div>
         <hr class="name-hr">
@@ -24,17 +24,88 @@
             <ul>
                 <img src="assets/images/borderclassic1.webp" alt="classic border" style="width: 200px; margin-left:40px;">
                 <hr style="width: 200px; margin-left:40px;">
-                <li><a href="#" id="about-menu" onclick="document.querySelector('#menu ul li:nth-child(2)').classList.toggle('menu-active')">About</a></li>
-                <li><a href="#" id="education-menu" onclick="document.querySelector('#menu ul li:nth-child(3)').classList.toggle('menu-active')">Education</a></li>
-                <li><a href="#" id="experience-menu" onclick="document.querySelector('#menu ul li:nth-child(4)').classList.toggle('menu-active')">Experience</a></li>
-                <li><a href="#" id="skills-menu" onclick="document.querySelector('#menu ul li:nth-child(5)').classList.toggle('menu-active')">Skills</a></li>
-                <li><a href="#" id="contacts-menu" onclick="document.querySelector('#menu ul li:nth-child(6)').classList.toggle('menu-active')">Contacts</a></li>
+                <li id="menu-item-1"><a href="#top" id="aboutMenu" onclick="menuAction(1)">About</a></li>
+                <li id="menu-item-2"><a href="#section2" id="educationMenu" onclick="menuAction(2)">Education</a></li>
+                <li id="menu-item-3"><a href="#section3" id="experienceMenu" onclick="menuAction(3)">Experience</a></li>
+                <li id="menu-item-4"><a href="#" id="skillsMenu" onclick="menuAction(4)">Skills</a></li>
+                <li id="menu-item-5"><a href="#" id="contactsMenu" onclick="menuAction(5)">Contacts</a></li>
                 <hr style="width: 200px; margin-left:40px;">
             </ul>
         </aside>
         <section id="section1">
-            <h1 id="profileTitle">About</h1>
-            <p id="profileDescription">Hello, World!</p>
+            <hr>
+            <article>
+                <div class="section-number">
+                    <h1 class="title-content">01.</h1>
+                </div>
+                <div class="section-title" id="profileTitle">
+                    <h1 class="title-content">SOBRE</h1>
+                </div>
+                <div class="section-content" id="profileDescription">
+                    <p>Hello, World!</p>
+                </div>
+            </article>
+            <hr>
+        </section>
+        <section id="section2">
+            <hr>
+            <article>
+                <div class="section-number">
+                    <h1 class="title-content">02.</h1>
+                </div>
+                <div class="section-title" id="educationTitle">
+                    <h1 class="title-content">EDUCATION</h1>
+                </div>
+                <div class="section-content" id="educationDescription">
+                    <p>Hello, World!</p>
+                </div>
+            </article>
+            <hr>
+        </section>
+        <section id="section3">
+            <hr>
+            <article>
+                <div class="section-number">
+                    <h1>03.</h1>
+                </div>
+                <div class="section-title" id="experienceTitle">
+                    <h1 class="title-content">EXPERIENCE</h1>
+                </div>
+                <div class="section-content" id="experienceDescription">
+                    <p>Hello, World!</p>
+                </div>
+            </article>
+            <hr>
+        </section>
+        <section id="section4">
+            <hr>
+            <article>
+                <div class="section-number">
+                    <h1>04.</h1>
+                </div>
+                <div class="section-title" id="skillsTitle">
+                    <h1 class="title-content">SKILLS</h1>
+                </div>
+                <div class="section-content" id="skillsDescription">
+                    <p>Hello, World!</p>
+                </div>
+            </article>
+            <hr>
+        </section>
+        <section id="section5">
+            <hr>
+            <article>
+                <div class="section-number">
+                    <h1>05.</h1>
+                </div>
+                <div class="section-title" id="contactsTitle">
+                    <h1 class="title-content">CONTACTS</h1>
+                </div>
+                <div class="section-content" id="contactsDescription">
+                    <p>Hello, World!</p>
+                </div>
+            </article>
+            <hr>
         </section>
     </main>
     

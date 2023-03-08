@@ -4,11 +4,24 @@
     --name-size: 1.5rem;
     --h2-size: 1rem;
     --a-menu-size: 1rem;
+    --header-height: 173px;
+    --article-width: 85%;
+    --aside-width: 240px;
+    --border-color: white;
+    --text-color: aliceblue;
+    --dark-color: rgb(20, 22, 37);
+    --dark-color-40: rgba(20, 22, 37,0.4);
 }
 
 @keyframes name-animation {
-    from {transform: rotateX(80deg);}
+    from {transform: rotateX(90deg);}
     to {transform: rotateX(0deg);}
+}
+@keyframes title-animation {
+    0% {transform: rotateX(0deg);background-image: none;}
+    33% {transform: rotateX(120deg);}
+    66% {transform: rotateX(240deg);}
+    100% {transform: rotateX(360deg); background-image: linear-gradient(to right, transparent, var(--text-color));}
 }
 
 *{
@@ -22,14 +35,14 @@ body{
     font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: 100%;
-    background-color: rgb(20, 22, 37);
-    background-image: url(../assets/images/bg696644.jpeg);
+    background-color: var(--dark-color);
+    background-image: url(../assets/images/bg1261728.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center 30px;
+    background-position: center top;
     background-size: cover;
 
-    color: aliceblue;
+    color: var(--text-color);
 }
 
 nav{
@@ -42,7 +55,7 @@ nav{
     padding: 5px;
     border-width: 3px;
     border-style: none none outset outset;
-    border-color: aliceblue;
+    border-color: var(--text-color);
     border-end-start-radius: 10px;
     background-color: transparent;
     
@@ -53,7 +66,7 @@ nav div{
     height: 24px;
 }
 
-nav div svg {
+nav div img {
     border-radius: 3px;
     width: 40px;
     height: 24px;
@@ -63,26 +76,46 @@ p{
     margin: 1rem 0;
 }
 
-h2{
-    font-size: var(--h2-size);
-    margin: 1rem 0;
+h1{
+    background-image: linear-gradient(to right, transparent, var(--text-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header {
     width: 100%;
-    background-image: linear-gradient(180deg,rgb(20, 22, 37),rgb(20, 22, 37),rgba(20, 22, 37,0.4), transparent);
-    color: aliceblue;
+    height: var(--header-height);
+    background-image: linear-gradient(180deg,var(--dark-color),var(--dark-color),rgba(20, 22, 37,0.4), transparent);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0.7rem 0 4rem;
+    padding-bottom: 4rem;
     
 }
 
 section{
-    width: 80%;
-    margin: 0 auto;
+    width: calc(100% - var(--aside-width) - 5px);
+    height: 100vh;
+    /* margin: 0 auto; */
+    margin-right: var(--aside-width);
+    padding-right: 40px;
+    border-style: none dashed none none;
+    border-width: 1px;
+    border-color: var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+article{
+    width: var(--article-width);
+    height: 90%;
+    display: flex;
+    flex-direction: row;
 }
 
 aside{
@@ -90,24 +123,20 @@ aside{
     right:0px;
     top: 50%;
     transform: translateY(-50%);
-    width: 240px;
+    width: var(--aside-width);
 }
-/* 
-aside ul {
-
-} */
 
 aside ul li {
     position: relative;
     left: 0px;
     list-style-type: none;
     height: 50px;
-    width: 200px;
+    width: calc(var(--aside-width) - 40px);
     margin-left: 40px;
     margin-bottom: 3px;
-
+    background-image: none;
     background-repeat: no-repeat;
-    background-position: 240px center;
+    background-position: 240px center;;
     background-size: 17px;
     
     transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
@@ -116,10 +145,10 @@ aside ul li {
 aside ul li:hover,.menu-active  {
     font-size: 1.4rem;
     height: 60px;
-    width: 240px;
+    width: var(--aside-width);
     margin:0;
     transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    background-image: url(../assets/images/pointer1.webp);
+    background-image: url(../assets/images/pointer.webp);
     background-position: right center;
 }
 
@@ -128,20 +157,21 @@ aside ul li a {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: aliceblue;
+    color: var(--text-color);
     height: 100%;
-    width: 200px;
+    width: calc(var(--aside-width) - 40px);
     background-image: linear-gradient(90deg, rgba(20, 22, 37,0.8),rgba(20, 22, 37,0.4), transparent);
     border-width: 1px;
     border-style: solid solid solid solid;
-    border-color: white;
+    border-color: var(--border-color);
     margin:0;
 }
 
 #curriculum{
+    font-size: var(--h2-size);
     font-weight: 100;
     letter-spacing: 1em;
-    margin-left: 1em;
+    margin: 1rem 0 0 1rem;
 
     animation-name: name-animation;
     animation-duration: 0.7s;
@@ -158,8 +188,8 @@ aside ul li a {
 
 
 .name{
-    color: aliceblue;
-    border: 0.5px solid white;
+    color: var(--text-color);
+    border: 0.5px solid var(--border-color);
     width: calc(var(--name-size) + 8px);
     height: calc(var(--name-size) + 8px);
     /* padding: 0px 5px; */
@@ -177,9 +207,56 @@ aside ul li a {
 }
 
 hr {
-    width: 70%;
+    width: var(--article-width);
     height:1px;
-    /* border: 1px solid  aliceblue; */
+    /* border: 1px solid  var(--text-color); */
     margin: 3px 0;
-    background-color: aliceblue;
+    background-color: var(--text-color);
+}
+
+#section1{
+    height: calc(100vh - var(--header-height));
+}
+
+.section-title{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title-letters{
+    /* color: transparent; */
+    background-image: none;
+    /* background-image: linear-gradient(to right, transparent, var(--text-color)); */
+    border: 1px solid var(--border-color);
+    /* width: 3rem;
+    height: 3rem; */
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: center;
+
+    transform: rotateX(0deg);
+}
+
+.section-title-animated{
+    transform-style: preserve-3d;
+    transform: perspective(23rem);
+    animation-name: title-animation;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 3;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.background-title{
+    background-image: linear-gradient(to right, transparent, var(--text-color));
+}
+
+.section-content{
+    width: 100%;
+    margin: 0 0 0 2rem;
+    padding: 1rem;
+    background-color: var(--dark-color-40);
+    border: 1px solid var(--border-color);
 }
