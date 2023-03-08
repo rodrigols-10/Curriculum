@@ -1,7 +1,11 @@
+// GLOBAL ////////////////////////////////
+
 const titles = document.querySelectorAll(".section-title");
 let target = [];
 let i = 0;
 titles.forEach(function(e){target[i] = e.getAttribute("id"); i++;})
+
+// FUNCTIONS ////////////////////////////////
 
 const debounce = function(func, wait, immediate) {
     let timeout;
@@ -78,12 +82,6 @@ const menuSelection = function(value){
     document.getElementById('menu-item-'+value).classList.add('menu-active');
 }
 
-const menuAction = function(value){
-    
-    // window.pageYOffset = document.getElementById(target[value-1]).offsetTop;
-    // menuSelection(value);
-}
-
 const titleStructure = function(tagId){
     //TITLE
     let i = 0;
@@ -150,6 +148,26 @@ function animeScroll() {
     }
 }
 
+function scrollToIdOnClick(event) {
+    console.log(event);
+    event.preventDefault();
+    const to = getScrollTopByHref(event.target);
+    scrollToPosition(to);
+}
+
+function getScrollTopByHref(element) {
+    const id = element.getAttribute('href');
+    return document.querySelector(id).offsetTop;
+}
+
+function scrollToPosition(to) {
+    window.scroll({
+        top: to,
+        behavior: "smooth",
+    });
+    // smoothScrollTo(0, to);
+}
+
 const smoothScrollTo = function (endX, endY, duration) {
     const startX = window.scrollX || window.pageXOffset;
     const startY = window.scrollY || window.pageYOffset;
@@ -176,10 +194,18 @@ const smoothScrollTo = function (endX, endY, duration) {
     }, 1000 / 60); // 60 fps
   };
 
-window.addEventListener('scroll', debounce(function() {
-    animeScroll();
-  }, 200));
-
+// EXECUTED ON LOAD ////////////////////////////////
 
 loadAllTitles();
 animeScroll();
+
+// EVENTS ////////////////////////////////
+
+const menuItems = document.querySelectorAll('.menu a[href^="#"]');
+menuItems.forEach(item => {
+  item.addEventListener('click', scrollToIdOnClick);
+})
+
+window.addEventListener('scroll', debounce(function() {
+    animeScroll();
+  }, 200));
