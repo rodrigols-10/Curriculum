@@ -74,14 +74,6 @@ const loadAllTitles = function (){
     titleStructure('contactsTitle');
 }
 
-const menuSelection = function(value){
-    const menu = document.querySelectorAll("#menu ul li").length;
-    for (let i = 1; i <= menu; i++) {
-        document.getElementById('menu-item-'+i).classList.remove('menu-active');
-    }
-    document.getElementById('menu-item-'+value).classList.add('menu-active');
-}
-
 const titleStructure = function(tagId){
     //TITLE
     let i = 0;
@@ -148,10 +140,19 @@ function animeScroll() {
     }
 }
 
+const menuSelection = function(value,elementId){
+    const element = (typeof elementId !== 'undefined') ? elementId : document.getElementById('menu-item-'+value);
+    const menu = document.querySelectorAll("#menu ul li").length;
+    for (let i = 1; i <= menu; i++) {
+        document.getElementById('menu-item-'+i).classList.remove('menu-active');
+    }
+    element.classList.add('menu-active');
+}
+
 function scrollToIdOnClick(event) {
-    console.log(event);
     event.preventDefault();
     const to = getScrollTopByHref(event.target);
+    menuSelection(0,event.target.parentElement);
     scrollToPosition(to);
 }
 
