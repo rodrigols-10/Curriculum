@@ -1,4 +1,7 @@
-// const target = ['profileTitle','educationTitle','experienceTitle'];
+const titles = document.querySelectorAll(".section-title");
+let target = [];
+let i = 0;
+titles.forEach(function(e){target[i] = e.getAttribute("id"); i++;})
 
 const debounce = function(func, wait, immediate) {
     let timeout;
@@ -76,7 +79,7 @@ const menuSelection = function(value){
 }
 
 const menuAction = function(value){
-
+    
     // window.pageYOffset = document.getElementById(target[value-1]).offsetTop;
     // menuSelection(value);
 }
@@ -132,10 +135,6 @@ const titleStructure = function(tagId){
 }
 
 function animeScroll() {
-    const titles = document.querySelectorAll(".section-title");
-    let target = [];
-    let i = 0;
-    titles.forEach(function(e){target[i] = e.getAttribute("id"); i++;})
     const windowTop = window.pageYOffset + (window.innerHeight * 0.75);
     for (let i = 0; i < target.length; i++) {
         if((windowTop) > document.getElementById(target[i]).offsetTop) {
@@ -143,7 +142,7 @@ function animeScroll() {
             for (let j = 0; j < document.querySelectorAll("#"+target[i]+" .section-title-letters").length; j++) {
                 document.querySelectorAll("#"+target[i]+" .section-title-letters")[j].classList.add('section-title-animated');
             }
-        } else {
+        } else if((window.pageYOffset + window.innerHeight) < document.getElementById(target[i]).offsetTop){
             for (let j = 0; j < document.querySelectorAll("#"+target[i]+" .section-title-letters").length; j++) {
                 document.querySelectorAll("#"+target[i]+" .section-title-letters")[j].classList.remove('section-title-animated');
             }
@@ -182,6 +181,5 @@ window.addEventListener('scroll', debounce(function() {
   }, 200));
 
 
-  smoothScrollTo(0,600);
-  loadAllTitles();
-  animeScroll();
+loadAllTitles();
+animeScroll();
