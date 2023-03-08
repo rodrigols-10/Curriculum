@@ -35,7 +35,9 @@
                 'profileTitle': 'ABOUT',
                 'profileDescription': 'Hello, world!',
                 'educationTitle': 'EDUCATION',
-                'experienceTitle': 'EXPERIENCE'
+                'experienceTitle': 'EXPERIENCE',
+                'skillsTitle': 'SKILLS',
+                'contactsTitle': 'CONTACTS'
             };
             return english;
 
@@ -49,7 +51,9 @@
                 'profileTitle': 'SOBRE',
                 'profileDescription': 'Olá, mundo!',
                 'educationTitle': 'EDUCAÇÃO',
-                'experienceTitle': 'EXPERIÊNCIA'
+                'experienceTitle': 'EXPERIÊNCIA',
+                'skillsTitle': 'HABILIDADES',
+                'contactsTitle': 'CONTATOS'
             };
             return portuguese;
 
@@ -75,6 +79,8 @@
         document.querySelector("#profileDescription").innerHTML = text.profileDescription;
         document.querySelector("#educationTitle > h1").textContent = text.educationTitle;
         document.querySelector("#experienceTitle > h1").textContent = text.experienceTitle;
+        document.querySelector("#skillsTitle > h1").textContent = text.skillsTitle;
+        document.querySelector("#contactsTitle > h1").textContent = text.contactsTitle;
         }
     }
 }
