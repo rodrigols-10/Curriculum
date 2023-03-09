@@ -23,23 +23,26 @@ const debounce = function(func, wait, immediate) {
 };
 
 const currentLanguage = function () {
-    if(sessionStorage.getItem('language') !== undefined){
-        let language = new Language('storage');
-        language.changePageLanguage();
-        loadAllTitles();
-        animeScroll()
-    }
+    let navLanguage = "en-US";
+    if(sessionStorage.getItem('language') !== 'null') navLanguage = 'storage';
+     if(navigator.language.includes('pt-')) navLanguage = 'pt-BR';
+    else if(navigator.language.includes('en-')) navLanguage = 'en-US';
+    console.log(navLanguage);
+    let language = new Language(navLanguage);
+    language.changePageLanguage();
+    loadAllTitles();
+    animeScroll();
 }
 
 const portugueseLanguage = function(){
-    let language = new Language("pt-br");
+    let language = new Language("pt-BR");
     language.changePageLanguage();
     loadAllTitles();
     animeScroll()
 }
 
 const englishLanguage = function(){
-    let language = new Language("en");
+    let language = new Language("en-US");
     language.changePageLanguage();
     loadAllTitles();
     animeScroll()

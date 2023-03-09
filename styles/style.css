@@ -11,6 +11,7 @@
     --text-color: aliceblue;
     --dark-color: rgb(20, 22, 37);
     --dark-color-40: rgba(20, 22, 37,0.4);
+    --dark-color-80: rgba(20, 22, 37,0.8);
 }
 
 @keyframes name-animation {
@@ -39,7 +40,7 @@ body{
     background-image: url(../assets/images/bg1629236.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center top;
+    background-position: center left;
     background-size: cover;
 
     color: var(--text-color);
@@ -222,7 +223,7 @@ hr {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: var(--dark-color-40);
+    background-color: var(--dark-color-80);
 }
 
 .section-title-letters{
@@ -258,6 +259,6 @@ hr {
     width: 100%;
     margin: 0 0 0 2rem;
     padding: 1rem;
-    background-color: var(--dark-color-40);
+    background-color: var(--dark-color-80);
     border: 1px solid var(--border-color);
 }

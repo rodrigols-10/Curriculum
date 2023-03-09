@@ -4,7 +4,7 @@
  // Não esqueça de usar um id nos elementos que terão os textos traduzidos.
 
  class Language {
-    constructor(language) { // 'en' or 'pt-br'
+    constructor(language) { // 'en-US' or 'pt-br'
         this._language = language;
     }
 
@@ -15,15 +15,17 @@
     _getLanguage() {
         
         if(this._language == sessionStorage.getItem('language')){
+            console.log("é igual a sessão?");
             return false;
         } 
         if(this._language == 'storage'){
+            console.log("vai dar erro");
             this._language = sessionStorage.getItem('language');
         }
 
         sessionStorage.setItem('language',this._language);
         
-        if(this._language == 'en')
+        if(this._language == 'en-US')
         {
             let english = {
                 'aboutMenu': 'About',
@@ -41,7 +43,7 @@
             };
             return english;
 
-        } else if(this._language == 'pt-br'){
+        } else if(this._language == 'pt-BR'){
             let portuguese = {
                 'aboutMenu': 'Sobre',
                 'educationMenu': 'Educação',
