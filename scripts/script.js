@@ -120,11 +120,12 @@ const titleStructure = function(tagId){
         snumber.style.backgroundImage = "linear-gradient(to right, transparent, var(--text-color))";
         // letter.style.animationDelay = 0.1+0.1*i+"s";
         snumber.style.translate = "0px -"+ i + "px";
-        snumber.style.width = boxWidth+"px";
+        snumber.style.width = (boxWidth+1)+"px";
         snumber.style.fontSize = boxWidth * 0.8 +"px";
         sectionNumber.appendChild(snumber);
         i++;
     });
+    document.querySelector("#"+tagId).style.backgroundClip = "content-box";
 }
 
 function animeScroll() {
